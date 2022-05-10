@@ -1,3 +1,4 @@
+
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
@@ -19,11 +20,10 @@ const SignInForm = () => {
   const { email, password } = formFields;
 
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
+   
   };
 
-  console.log(formFields);
 
   const resetFormfields = () => {
     setFormFields(defaultFormFields);
@@ -34,7 +34,6 @@ const SignInForm = () => {
 
     try {
       const { user } = await signInAuthUserWithEmailAndPassword(email, password);
-      console.log(user);
       resetFormfields();
     } catch (error) {
       switch(error.code) {
